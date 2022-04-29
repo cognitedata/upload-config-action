@@ -6,17 +6,31 @@ from cognite.experimental import CogniteClient
 from cognite.client.exceptions import CogniteAPIKeyError
 from cognite.experimental.data_classes.extractionpipelines import ExtractionPipelineConfig
 
+
+def trim_to_none(st: str) -> str:
+    if st is None:
+        return st
+    st = st.strip()
+    if st == "":
+        return None
+    else:
+        return st
+
+
 def get_client() -> CogniteClient:
-    api_key = os.environ.get("CDF_API_KEY")
-    client_id = os.environ.get("CDF_CLIENT_ID")
-    client_secret = os.environ.get("CDF_CLIENT_SECRET")
-    token_url = os.environ.get("CDF_TOKEN_URL")
-    scopes = os.environ.get("CDF_SCOPES")
-    audience = os.environ.get("CDF_AUDIENCE")
-    cdf_project_name = os.environ.get("CDF_PROJECT_NAME")
-    base_url = os.environ.get("CDF_BASE_URL", "https://api.cognitedata.com")
+    api_key = trim_to_none(os.environ.get("CDF_API_KEY"))
+    client_id = trim_to_none(os.environ.get("CDF_CLIENT_ID"))
+    client_secret = trim_to_none(os.environ.get("CDF_CLIENT_SECRET"))
+    token_url = trim_to_none(os.environ.get("CDF_TOKEN_URL"))
+    scopes = trim_to_none(os.environ.get("CDF_SCOPES"))
+    audience = trim_to_none(os.environ.get("CDF_AUDIENCE"))
+    cdf_project_name = trim_to_none(os.environ.get("CDF_PROJECT_NAME"))
+    base_url = trim_to_none(os.environ.get("CDF_BASE_URL", "https://api.cognitedata.com"))
     if not api_key and not audience:
         scopes = scopes.strip().split(" ") if scopes else [f"{base_url}/.default"]
+
+    if (not client_secret or not client_id or not token_url or not cdf_project_name) and not api_key:
+        sys.exit("Either OIDC credentials or API key must be specified")
 
     try:
         if api_key is not None and (
@@ -29,7 +43,7 @@ def get_client() -> CogniteClient:
             sys.exit("Please provide only API key configuration or only OAuth2 configuration.")
         elif api_key is not None:
             return CogniteClient(
-                client_name="transformations_cli",
+                client_name="config_upload",
                 api_key=api_key,
                 base_url=base_url,
                 project=cdf_project_name,
@@ -38,7 +52,7 @@ def get_client() -> CogniteClient:
         else:
             return CogniteClient(
                 base_url=base_url,
-                client_name="transformations_cli",
+                client_name="config_upload",
                 token_client_id=client_id,
                 token_client_secret=client_secret,
                 token_url=token_url,

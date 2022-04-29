@@ -41,12 +41,12 @@ runs:
   env:
     CDF_API_KEY: ${{ inputs.api-key }}
     CDF_TOKEN_URL: ${{ inputs.token-url }}
-    CDF_PROJECT: ${{ inputs.cdf-project-name }}
+    CDF_PROJECT_NAME: ${{ inputs.cdf-project-name }}
     CDF_CLIENT_ID: ${{ inputs.client-id }}
     CDF_CLIENT_SECRET: ${{ inputs.client-secret }}
     CDF_SCOPES: ${{ inputs.scopes }}
     CDF_AUDIENCE: ${{ inputs.audience }}
-    CDF_BASE_URL: "${{ inputs.base-url }}"
-    CONFIG_ROOT_FOLDER: "${{ inputs.root-folder }}"
-    CONFIG_DEPLOY: "${{ inputs.deploy }}"
-    CONFIG_REVISION_MESSAGE: "${{ inputs.revision-message }}"
+    CDF_BASE_URL: ${{ inputs.base-url }}
+    CONFIG_ROOT_FOLDER: ${{ inputs.root-folder }}
+    CONFIG_DEPLOY: ${{ inputs.deploy }}
+    CONFIG_REVISION_MESSAGE: ${{ inputs.revision-message }}
