@@ -33,7 +33,7 @@ inputs:
     description: 'Root folder for recursively looking for config files. This is relative to $GITHUB_WORKSPACE'
     required: true
   revision-message:
-    description: 'Revision message in CDF. For example "${{ github.event.head_commit.message }}"'
+    description: 'Revision message in CDF. For example "github.event.head_commit.message"'
     required: false
 runs:
   using: 'docker'
