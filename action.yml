@@ -1,0 +1,52 @@
+name: 'Deploy Configs'
+description: 'Deploy configs to extraction pipelines in Cognite Data Fusion'
+inputs:
+  api-key:
+    description: 'API key for authenticating with CDF'
+    required: false
+  base-url:
+    description: 'CDF base URL'
+    required: false
+    default: 'https://api.cognitedata.com'
+  token-url:
+    description: 'Token url to use for fetching OAuth2 tokens'
+    required: false
+  cdf-project-name:
+    description: 'CDF project name (only required when using OAuth2 credentials)'
+    required: false
+  scopes:
+    description: 'List of OAuth2 scopes (space separated)'
+    required: false
+  audience:
+    description: 'OAuth2 audience'
+    required: false
+  client-id:
+    description: 'OAuth2 client ID'
+    required: false
+  client-secret:
+    description: 'OAuth2 client secret'
+    required: false
+  deploy:
+    description: '"True" to deploy configs to CDF'
+    required: false
+  root-folder:
+    description: 'Root folder for recursively looking for config files. This is relative to $GITHUB_WORKSPACE'
+    required: true
+  revision-message:
+    description: 'Revision message in CDF. For example "github.event.head_commit.message"'
+    required: false
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    CDF_API_KEY: ${{ inputs.api-key }}
+    CDF_TOKEN_URL: ${{ inputs.token-url }}
+    CDF_PROJECT_NAME: ${{ inputs.cdf-project-name }}
+    CDF_CLIENT_ID: ${{ inputs.client-id }}
+    CDF_CLIENT_SECRET: ${{ inputs.client-secret }}
+    CDF_SCOPES: ${{ inputs.scopes }}
+    CDF_AUDIENCE: ${{ inputs.audience }}
+    CDF_BASE_URL: ${{ inputs.base-url }}
+    CONFIG_ROOT_FOLDER: ${{ inputs.root-folder }}
+    CONFIG_DEPLOY: ${{ inputs.deploy }}
+    CONFIG_REVISION_MESSAGE: ${{ inputs.revision-message }}

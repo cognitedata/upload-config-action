@@ -31,6 +31,6 @@ For example:
     client-secret: ${{ secrets.CLIENT_SECRET }}
     root-folder: "test_root_dir/"
     deploy: "true"
-    revision-message: "${{ steps.commitmsg.outputs.commitmessage }}"
+    revision-message: "${{ github.event.head_commit.message }}"
 ```
 
