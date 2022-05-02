@@ -1,13 +1,13 @@
 import os
 import sys
-from typing import Tuple
+from typing import Optional, Tuple
 
 from cognite.experimental import CogniteClient
 from cognite.client.exceptions import CogniteAPIKeyError
 from cognite.experimental.data_classes.extractionpipelines import ExtractionPipelineConfig
 
 
-def trim_to_none(st: str) -> str:
+def trim_to_none(st: Optional[str]) -> Optional[str]:
     if st is None:
         return st
     st = st.strip()
