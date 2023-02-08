@@ -14,7 +14,7 @@ upload = "cognite.config_upload.__main__:main"
 
 [tool.poetry.dependencies]
 python = "^3.9"
-cognite-sdk-experimental = "^0.76.0"
+cognite-sdk-experimental = "^0.110.0"
 
 [tool.poetry.dev-dependencies]
 black = "^22.3.0"
