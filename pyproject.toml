@@ -14,7 +14,7 @@ upload = "cognite.config_upload.__main__:main"
 
 [tool.poetry.dependencies]
 python = "^3.9"
-cognite-sdk-experimental = "^0.76.0"
+cognite-sdk = "^5.4.4"
 
 [tool.poetry.dev-dependencies]
 black = "^22.3.0"
@@ -23,5 +23,5 @@ flake8 = "^4.0.1"
 mypy = "^0.991"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
