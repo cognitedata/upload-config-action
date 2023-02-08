@@ -2,10 +2,10 @@ import os
 import sys
 from typing import Optional, Tuple
 
-from cognite.experimental import CogniteClient
+from cognite.client import CogniteClient, ClientConfig
+from cognite.client.credentials import APIKey, OAuthClientCredentials
 from cognite.client.exceptions import CogniteAPIKeyError
-from cognite.experimental.data_classes.extractionpipelines import ExtractionPipelineConfig
-
+from cognite.client.data_classes.extractionpipelines import ExtractionPipelineConfig
 
 def trim_to_none(st: Optional[str]) -> Optional[str]:
     if st is None:
@@ -32,6 +32,7 @@ def get_client() -> CogniteClient:
     if (not client_secret or not client_id or not token_url or not cdf_project_name) and not api_key:
         sys.exit("Either OIDC credentials or API key must be specified")
 
+    auth = None
     try:
         if api_key is not None and (
             client_id is not None
@@ -42,25 +43,22 @@ def get_client() -> CogniteClient:
         ):
             sys.exit("Please provide only API key configuration or only OAuth2 configuration.")
         elif api_key is not None:
-            return CogniteClient(
-                client_name="config_upload",
-                api_key=api_key,
-                base_url=base_url,
-                project=cdf_project_name,
-                timeout=60,
-            )
+            auth = APIKey(api_key=api_key)
         else:
-            return CogniteClient(
-                base_url=base_url,
-                client_name="config_upload",
-                token_client_id=client_id,
-                token_client_secret=client_secret,
+            auth = OAuthClientCredentials(
                 token_url=token_url,
-                token_scopes=scopes,
-                project=cdf_project_name,
-                token_custom_args={"audience": audience} if audience else None,
-                timeout=60,
+                client_id=client_id,
+                client_secret=client_secret,
+                scopes=scopes,
+                token_custom_args={"audience": audience} if audience else None
             )
+        return CogniteClient(ClientConfig(
+            client_name="config_upload",
+            base_url=base_url,
+            project=cdf_project_name,
+            credentials=auth,
+            timeout=60,
+        ))
     except CogniteAPIKeyError as e:
         sys.exit(f"Cognite client cannot be initialized: {e}.")
 
@@ -91,7 +89,7 @@ def upload_configs(client: CogniteClient):
             config=result,
             description=revision_message
         )
-        client.extraction_pipelines.new_config(config)
+        client.extraction_pipelines.config.create(config)
 
 
 def main() -> None:
