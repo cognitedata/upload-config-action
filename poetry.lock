@@ -254,14 +254,14 @@ colorama = {version = "*", markers = "platform_system == \"Windows\""}
 
 [[package]]
 name = "cognite-sdk"
-version = "5.4.4"
+version = "5.7.3"
 description = "Cognite Python SDK"
 category = "main"
 optional = false
 python-versions = ">=3.8,<4.0"
 files = [
-    {file = "cognite_sdk-5.4.4-py3-none-any.whl", hash = "sha256:b401323eebdf094c43d26253e39ce4e992e40b8f1ac64ee82faccf1131efacb4"},
-    {file = "cognite_sdk-5.4.4.tar.gz", hash = "sha256:4b6985da613dcc4ca490f99b4b3f3a17fd4b37466a77538a546e6da70c4a511e"},
+    {file = "cognite_sdk-5.7.3-py3-none-any.whl", hash = "sha256:efb5e33af2fa241de3a53a89f444daee2833e6293008c5c6169843cc78aad987"},
+    {file = "cognite_sdk-5.7.3.tar.gz", hash = "sha256:05a567635bd4d1d2b0cfa17159a827870545850d70790f2d7705991bdf93ada4"},
 ]
 
 [package.dependencies]
@@ -272,11 +272,12 @@ requests_oauthlib = ">=1,<2"
 sortedcontainers = ">=2.2,<3.0"
 
 [package.extras]
-all = ["geopandas (>=0.10.0)", "pandas (>=1.4,<2.0)", "pip (>=20.0.0)", "shapely (>=1.7.0)", "sympy"]
+all = ["geopandas (>=0.10.0)", "pandas (>=1.4)", "pip (>=20.0.0)", "shapely (>=1.7.0)", "sympy"]
 functions = ["pip (>=20.0.0)"]
 geo = ["geopandas (>=0.10.0)", "shapely (>=1.7.0)"]
 numpy = ["numpy (>=1.20,<2.0)"]
-pandas = ["pandas (>=1.4,<2.0)"]
+pandas = ["pandas (>=1.4)"]
+pyodide = ["pyodide-http (>=0.2.0,<0.3.0)"]
 sympy = ["sympy"]
 
 [[package]]
