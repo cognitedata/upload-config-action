@@ -249,31 +249,31 @@ colorama = {version = "*", markers = "platform_system == \"Windows\""}
 
 [[package]]
 name = "cognite-sdk"
-version = "5.12.0"
+version = "7.62.8"
 description = "Cognite Python SDK"
 optional = false
-python-versions = ">=3.8,<4.0"
+python-versions = "<4.0,>=3.8"
 files = [
-    {file = "cognite_sdk-5.12.0-py3-none-any.whl", hash = "sha256:587dd1c1d98d33a1fead9ff9c388e6c841ab68e0b02952af8193ca5250fbd92e"},
-    {file = "cognite_sdk-5.12.0.tar.gz", hash = "sha256:db972e875e17f4ce0f7f3ca3d945293e670133d18854debad44de8d312f696b6"},
+    {file = "cognite_sdk-7.62.8-py3-none-any.whl", hash = "sha256:efc4e942934aee2d36fd578fad17db919f03b8a05ec532b0ac50c5edcb3959ad"},
+    {file = "cognite_sdk-7.62.8.tar.gz", hash = "sha256:9d52ca99b33a667daac0cfef8e6fd30b884ac2c4c1d1f9c0de2dbc55595e5284"},
 ]
 
 [package.dependencies]
 msal = ">=1,<2"
-protobuf = ">=3.16.0"
-requests = ">=2,<3"
+protobuf = ">=4"
+requests = ">=2.27,<3.0"
 requests_oauthlib = ">=1,<2"
-sortedcontainers = ">=2.2,<3.0"
-tzdata = {version = ">=2023.3", markers = "sys_platform == \"win32\""}
+typing_extensions = ">=4"
 
 [package.extras]
-all = ["backports-zoneinfo[tzdata] (>=0.2.1)", "geopandas (>=0.10.0)", "pandas (>=1.4)", "pip (>=20.0.0)", "shapely (>=1.7.0)", "sympy"]
+all = ["PyYAML (>=6.0,<7.0)", "geopandas (>=0.10,<0.14)", "geopandas (>=0.14)", "numpy (>=1.20,<1.25)", "numpy (>=1.25,<2.0)", "numpy (>=1.26,<2.0)", "pandas (>=1.4,<2.1)", "pandas (>=2.1)", "pip (>=20.0.0)", "shapely (>=1.7.0)", "sympy"]
 functions = ["pip (>=20.0.0)"]
-geo = ["geopandas (>=0.10.0)", "shapely (>=1.7.0)"]
-numpy = ["numpy (>=1.20,<2.0)"]
-pandas = ["backports-zoneinfo[tzdata] (>=0.2.1)", "pandas (>=1.4)"]
-pyodide = ["pyodide-http (>=0.2.0,<0.3.0)"]
+geo = ["geopandas (>=0.10,<0.14)", "geopandas (>=0.14)", "shapely (>=1.7.0)"]
+numpy = ["numpy (>=1.20,<1.25)", "numpy (>=1.25,<2.0)", "numpy (>=1.26,<2.0)"]
+pandas = ["pandas (>=1.4,<2.1)", "pandas (>=2.1)"]
+pyodide = ["pyodide-http (>=0.2.1,<0.3.0)", "tzdata (>=2024.1)"]
 sympy = ["sympy"]
+yaml = ["PyYAML (>=6.0,<7.0)"]
 
 [[package]]
 name = "colorama"
@@ -628,17 +628,6 @@ requests = ">=2.0.0"
 rsa = ["oauthlib[signedtoken] (>=3.0.0)"]
 
 [[package]]
-name = "sortedcontainers"
-version = "2.4.0"
-description = "Sorted Containers -- Sorted List, Sorted Dict, Sorted Set"
-optional = false
-python-versions = "*"
-files = [
-    {file = "sortedcontainers-2.4.0-py2.py3-none-any.whl", hash = "sha256:a163dcaede0f1c021485e957a39245190e74249897e2ae4b2aa38595db237ee0"},
-    {file = "sortedcontainers-2.4.0.tar.gz", hash = "sha256:25caa5a06cc30b6b83d11423433f65d1f9d76c4c6a0c90e3379eaa43b9bfdb88"},
-]
-
-[[package]]
 name = "tomli"
 version = "2.0.1"
 description = "A lil' TOML parser"
@@ -661,17 +650,6 @@ files = [
 ]
 
 [[package]]
-name = "tzdata"
-version = "2023.3"
-description = "Provider of IANA time zone data"
-optional = false
-python-versions = ">=2"
-files = [
-    {file = "tzdata-2023.3-py2.py3-none-any.whl", hash = "sha256:7e65763eef3120314099b6939b5546db7adce1e7d6f2e179e3df563c70511eda"},
-    {file = "tzdata-2023.3.tar.gz", hash = "sha256:11ef1e08e54acb0d4f95bdb1be05da659673de4acbd21bf9c69e94cc5e907a3a"},
-]
-
-[[package]]
 name = "urllib3"
 version = "1.26.14"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
@@ -690,4 +668,4 @@ socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "30d270a02b04fbdfceb279659a849618b79f818c07b5ec73ecad33963a86cac0"
+content-hash = "6de7b9fd2b66e321d69e7a6109e13c8587e613c38c9a55e89eb4b96e9dd53969"
