@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploy Configs
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
 
       - name: get commit message
         id: commitmsg
