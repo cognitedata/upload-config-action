@@ -9,18 +9,30 @@ packages = [
     { include="cognite", from="." },
 ]
 
+[tool.ruff]
+exclude = [".git", ".mypy_cache", ".ruff_cache"]
+line-length = 120
+target-version = "py311"
+
+[tool.ruff.lint]
+select = [
+    "E", "F", "I", "S", "FAST",  "DTZ", "W", "LOG", "ASYNC", "RUF",
+    "A", "C",
+]
+ignore = ["S104", "C901"]
+fixable = ["A", "B", "C", "D", "E", "F", "I", "UP"]
+unfixable = []
+
 [tool.poetry.scripts]
 upload = "cognite.config_upload.__main__:main"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.11"
 cognite-sdk = "^5.4.4"
 
 [tool.poetry.dev-dependencies]
-black = "^23.0.0"
-isort = "^6.0.0"
-flake8 = "^7.0.0"
 mypy = "^1.0"
+ruff = "^0.12.12"
 
 [build-system]
 requires = ["poetry-core"]
