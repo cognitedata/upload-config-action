@@ -7,6 +7,7 @@ from cognite.client.credentials import APIKey, OAuthClientCredentials
 from cognite.client.exceptions import CogniteAPIKeyError
 from cognite.client.data_classes.extractionpipelines import ExtractionPipelineConfig
 
+
 def trim_to_none(st: Optional[str]) -> Optional[str]:
     if st is None:
         return st
@@ -50,15 +51,17 @@ def get_client() -> CogniteClient:
                 client_id=client_id,
                 client_secret=client_secret,
                 scopes=scopes,
-                token_custom_args={"audience": audience} if audience else None
+                token_custom_args={"audience": audience} if audience else None,
             )
-        return CogniteClient(ClientConfig(
-            client_name="config_upload",
-            base_url=base_url,
-            project=cdf_project_name,
-            credentials=auth,
-            timeout=60,
-        ))
+        return CogniteClient(
+            ClientConfig(
+                client_name="config_upload",
+                base_url=base_url,
+                project=cdf_project_name,
+                credentials=auth,
+                timeout=60,
+            )
+        )
     except CogniteAPIKeyError as e:
         sys.exit(f"Cognite client cannot be initialized: {e}.")
 
@@ -82,13 +85,9 @@ def upload_configs(client: CogniteClient):
         with open(file[0]) as f:
             result = f.read()
 
-        extid = file[1].rsplit('.', 1)[0]
+        extid = file[1].rsplit(".", 1)[0]
         print("Uploading config to ", extid)
-        config = ExtractionPipelineConfig(
-            external_id=extid,
-            config=result,
-            description=revision_message
-        )
+        config = ExtractionPipelineConfig(external_id=extid, config=result, description=revision_message)
         client.extraction_pipelines.config.create(config)
 
 
@@ -100,6 +99,6 @@ def main() -> None:
     else:
         print("CONFIG_DEPLOY is not set to true, configs will not be deployed")
 
+
 if __name__ == "__main__":
     main()
-
