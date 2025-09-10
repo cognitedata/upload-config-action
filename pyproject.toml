@@ -32,7 +32,7 @@ cognite-sdk = "^5.4.4"
 
 [tool.poetry.dev-dependencies]
 mypy = "^1.0"
-ruff = "^0.12.12"
+ruff = "^0.13.0"
 
 [build-system]
 requires = ["poetry-core"]
