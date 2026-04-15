@@ -28,7 +28,7 @@ upload = "cognite.config_upload.__main__:main"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-cognite-sdk = "^5.4.4"
+cognite-sdk = "^8.0.0"
 
 [tool.poetry.dev-dependencies]
 mypy = "^1.0"
